@@ -3,66 +3,54 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Pessoas extends Model {
+  class Veiculos extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Pessoas.hasMany(models.Veiculos, {
+      Veiculos.belongsTo(models.Pessoas, {
         foreignKey: 'id_responsavel'
-      })
+      }) 
     }
   }
-  Pessoas.init({
-    cpf_cnpj: {
+  Veiculos.init({
+    placa: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    nome: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    tipo_pessoa: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    cep: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    estado: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    rua: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    numero: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    bairro: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    telefone: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    telefone_2: {
+    chassi: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    info_adicionais: {
+    marca: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    modelo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ano: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ano_modelo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    cor: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    km: {
       type: DataTypes.STRING,
       allowNull: true
     }
   }, {
     sequelize,
-    modelName: 'Pessoas',
+    modelName: 'Veiculos',
   });
-  return Pessoas;
+  return Veiculos;
 };
